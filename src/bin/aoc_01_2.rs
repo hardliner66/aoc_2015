@@ -6,17 +6,19 @@ fn with_loop(content: &str) -> Result<(), Box<dyn std::error::Error>> {
             ')' => -1,
             _ => 0,
 		})
-        .enumerate()
-        .collect::<Vec<_>>();
+        .enumerate();
 
-    let mut tmp = 0;
+    let mut sum = 0;
+    let mut pos = -1;
     for (i, v) in values {
-        tmp += v;
-        if tmp == -1 {
-            println!("{}", i + 1);
-            break;
+        sum += v;
+        if pos == -1 && sum == -1 {
+            pos = i as i32 + 1;
         }
     }
+
+    println!("Sum: {}", sum);
+    println!("Pos: {}", pos);
 
     Ok(())
 }
@@ -40,9 +42,11 @@ fn with_iterator(content: &str) -> Result<(), Box<dyn std::error::Error>> {
             v
         });
 
-    let pos = values.iter().position(|&c| c == -1).map(|pos| pos + 1);
+    let sum = values.last().unwrap();
+    let pos = values.iter().position(|&c| c == -1).map(|pos| pos + 1).unwrap();
 
-    println!("{:?}", pos.unwrap());
+    println!("Sum: {}", sum);
+    println!("Pos: {}", pos);
 
     Ok(())
 }
