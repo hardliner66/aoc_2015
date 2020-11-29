@@ -5,7 +5,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let contest_duration = 2503;
 
-    let mut parts = content
+    let parts = content
         .lines()
         .map(|line| {
             line.replace(" can fly", "")
