@@ -11,7 +11,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 		v
     });
 
-    let result: i64 = values.map(|v| {
+    let paper: i64 = values.map(|v| {
 		if let [a, b, c] = &v.as_slice() {
 			// we take the first one 3 times,
 			// because the smallest sides are used to calculate the extra paper
@@ -21,7 +21,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 		}
 	}).sum();
 
-	println!("{}", result);
+	println!("Paper: {}", paper);
 
     Ok(())
 }

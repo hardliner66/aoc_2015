@@ -9,19 +9,28 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 		];
 		v.sort();
 		v
-    });
+	});
 
-    let result: i64 = values.map(|v| {
+    let paper: i64 = values.clone().map(|v| {
 		if let [a, b, c] = &v.as_slice() {
 			// we take the first one 3 times,
 			// because the smallest sides are used to calculate the extra paper
+			(3 * a * b) + (2 * b * c) + (2 * c * a)
+		} else {
+			0
+		}
+	}).sum();
+
+    let ribbon: i64 = values.map(|v| {
+		if let [a, b, c] = &v.as_slice() {
 			(2 * a) + (2 * b) + (a * b * c)
 		} else {
 			0
 		}
 	}).sum();
 
-	println!("{}", result);
+	println!("Paper: {}", paper);
+	println!("Ribbon: {}", ribbon);
 
     Ok(())
 }
